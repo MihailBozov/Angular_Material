@@ -18,7 +18,7 @@ export const COURSES: any = {
     longDescription: 'Build complex enterprise data forms with the powerful Angular Forms module',
     iconUrl: 'https://angular-university.s3-us-west-1.amazonaws.com/course-images/angular-forms-course-small.jpg',
     courseListIcon: 'https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png',
-    category: 'BEGINNER',
+    category: 'ADVANCED',
     lessonsCount: 10,
     seqNo: 1,
     url: 'angular-forms-course',
