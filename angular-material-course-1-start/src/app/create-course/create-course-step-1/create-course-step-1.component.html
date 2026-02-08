@@ -1,6 +1,6 @@
 <div [formGroup]="form" class="course-details-form">
 
-    <mat-form-field >
+    <mat-form-field>
         <mat-label>Course Title</mat-label>
         <input matInput formControlName="title" #title>
         <span matPrefix>+32</span>
@@ -13,13 +13,30 @@
             A minimum length of 5 characters is required.
         </mat-error>
     </mat-form-field>
-    
+
     <mat-radio-group class="course-type" formControlName="courseType">
         <mat-radio-button value="free">Free</mat-radio-button>
         <mat-radio-button value="premium">Premium</mat-radio-button>
     </mat-radio-group>
-    
+
+    <mat-form-field appearance="fill">
+
+        <mat-select formControlName="category" placeholder="Select category" multiple>
+
+            <mat-optgroup label="Beginners">
+
+                <mat-option value="newPrograming">New to Programing</mat-option>
+                <mat-option value="newJavascript">New to Javascript</mat-option>
+                <mat-option value="newAngular">New to Angular</mat-option>
+
+            </mat-optgroup>
+
+            <mat-option value="beginners">Beginners</mat-option>
+            <mat-option value="INTERMEDIATE">Intermediate</mat-option>
+            <mat-option value="ADVANCED">Advanced</mat-option>
+
+        </mat-select>
+
+    </mat-form-field>
+
 </div>
-
-
-
