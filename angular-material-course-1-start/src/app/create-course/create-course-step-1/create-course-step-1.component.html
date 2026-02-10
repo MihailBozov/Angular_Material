@@ -53,5 +53,14 @@
         
         
     </mat-form-field>
+    
+    <mat-checkbox color="primary" formControlName="downloadsAllowed" [indeterminate]="true">
+        Downloads allwoed?
+    </mat-checkbox>
 
+    <mat-form-field  appearance="outline">
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="longDescription" cdkTextareaAutosize cdkAutosizeMinRows="2" cdkAutosizeMaxRows="10"></textarea>
+    </mat-form-field>
+    
 </div>
