@@ -90,5 +90,13 @@ export class DragDropComponent {
       courseId: 11
     }
   ];
+  
+  drop(event: CdkDragDrop<Lesson>) {
+    console.log("previws index = ", event.previousIndex)
+    console.log("current index = ", event.currentIndex)
+    
+    
+    moveItemInArray(this.lessons, event.previousIndex, event.currentIndex)
+  }
 
 }
