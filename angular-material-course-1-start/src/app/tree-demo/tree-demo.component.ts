@@ -3,8 +3,8 @@ import {MatTreeFlatDataSource, MatTreeFlattener, MatTreeNestedDataSource} from '
 import {FlatTreeControl, NestedTreeControl} from '@angular/cdk/tree';
 
 interface CourseNode {
-  name: string;
-  children?: CourseNode[];
+  name: string,
+  children?: CourseNode[]
 }
 
 const TREE_DATA: CourseNode[] = [
@@ -59,10 +59,18 @@ const TREE_DATA: CourseNode[] = [
 })
 export class TreeDemoComponent implements OnInit {
 
+  nestedDataSource = new MatTreeNestedDataSource<CourseNode>();
+  nestedTreeControl =new NestedTreeControl<CourseNode>(node => node.children);
+
+
 
   ngOnInit() {
+    this.nestedDataSource.data = TREE_DATA
 
+  }
 
+  hasNestedChild(index: number, node:CourseNode) {
+    return node?.children?.length > 0;
   }
 
 }
