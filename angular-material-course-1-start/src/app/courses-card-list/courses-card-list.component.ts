@@ -18,6 +18,7 @@ export class CoursesCardListComponent implements OnInit {
 
   cols: number = 3;
   rowHeight: string = '500px';
+  handsetPortrait: boolean = false;
 
   constructor(private dialog: MatDialog,
               private responsive: BreakpointObserver) {
@@ -30,34 +31,36 @@ export class CoursesCardListComponent implements OnInit {
       Breakpoints.HandsetPortrait,
       Breakpoints.HandsetLandscape,
     ])
-      .subscribe(result => {
-        this.cols = 3;
-        this.rowHeight = '500px';
+    .subscribe(result => {
+      this.cols = 3;
+      this.rowHeight = '500px';
+      this.handsetPortrait = false;
 
-        const breakpoints = result.breakpoints;
+      const breakpoints = result.breakpoints;
 
-        if (breakpoints[Breakpoints.TabletPortrait]) {
-          this.cols = 1;
-        }
-        else if (breakpoints[Breakpoints.TabletLandscape]) {
-          this.cols = 2;
-        }
-        else if (breakpoints[Breakpoints.HandsetPortrait]) {
-          this.cols = 1;
-          this.rowHeight = '430px';
-        }
-        else if (breakpoints[Breakpoints.HandsetLandscape]) {
-          this.cols = 1;
-        }
-      });
+      if (breakpoints[Breakpoints.TabletPortrait]) {
+        this.cols = 1;
+      }
+      else if (breakpoints[Breakpoints.TabletLandscape]) {
+        this.cols = 2;
+      }
+      else if (breakpoints[Breakpoints.HandsetPortrait]) {
+        this.cols = 1;
+        this.rowHeight = '430px';
+        this.handsetPortrait = true;
+      }
+      else if (breakpoints[Breakpoints.HandsetLandscape]) {
+        this.cols = 1;
+      }
+    });
   }
 
   editCourse(course: Course) {
     openEditCourseDialog(this.dialog, course)
-      .pipe(
-        filter(val => !!val)
-      )
-      .subscribe(val => console.log("New course value:", val))
+    .pipe(
+      filter(val => !!val)
+    )
+    .subscribe(val => console.log("New course value:", val))
 
   }
 

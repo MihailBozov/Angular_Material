@@ -1,62 +1,64 @@
-import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
-import { Course } from "../model/course";
-import { FormBuilder, Validators, FormGroup } from "@angular/forms";
+import {Component, Inject, OnInit, ViewEncapsulation} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogConfig, MatDialogRef} from '@angular/material/dialog';
+import {Course} from "../model/course";
+import {FormBuilder, Validators, FormGroup} from "@angular/forms";
 import * as moment from 'moment';
 
 @Component({
-    selector: 'course-dialog',
-    templateUrl: './course-dialog.component.html',
-    styleUrls: ['./course-dialog.component.css'],
-    standalone: false
+  selector: 'course-dialog',
+  templateUrl: './course-dialog.component.html',
+  styleUrls: ['./course-dialog.component.css'],
+  standalone: false
 })
 export class CourseDialogComponent implements OnInit {
 
-    description: string;
+  description: string;
 
-    form = this.fb.group({
-        description: [this.course.description, Validators.required],
-        category: [this.course.category, Validators.required],
-        releasedAt: [new Date(), Validators.required],
-        longDescription: [this.course.longDescription, Validators.required]
-    });
+  form = this.fb.group({
+    description: [this.course.description, Validators.required],
+    category: [this.course.category, Validators.required],
+    releasedAt: [new Date(), Validators.required],
+    longDescription: [this.course.longDescription, Validators.required]
+  });
 
-    constructor(
-        private fb: FormBuilder,
-        @Inject(MAT_DIALOG_DATA) private course: Course,
-        private dialogRef: MatDialogRef<CourseDialogComponent>
-    ) {
-        this.description = course.description
+  constructor(
+    private fb: FormBuilder,
+    @Inject(MAT_DIALOG_DATA) private course: Course,
+    private dialogRef: MatDialogRef<CourseDialogComponent>
+  ) {
+    this.description = course.description
 
-    }
+  }
 
-    ngOnInit() {
+  ngOnInit() {
 
-    }
+  }
 
-    save() {
+  save() {
 
 
-        this.dialogRef.close(this.form.value);
-    }
+    this.dialogRef.close(this.form.value);
+  }
 
-    close() {
-        this.dialogRef.close();
-    }
+  close() {
+    this.dialogRef.close();
+  }
 
 }
 
 export function openEditCourseDialog(dialog: MatDialog, course: Course) {
-    const config = new MatDialogConfig();
-    config.disableClose = true;
-    config.autoFocus = true;
+  const config = new MatDialogConfig();
+  config.disableClose = true;
+  config.autoFocus = true;
+  config.panelClass = "modal-panel";
+  config.backdropClass = "backdrop-class";
 
     config.data = {
-        ...course,
+      ...course,
 
     }
 
-    const dialogRef = dialog.open(CourseDialogComponent, config);
-    return dialogRef.afterClosed();
+  const dialogRef = dialog.open(CourseDialogComponent, config);
+  return dialogRef.afterClosed();
 }
 
